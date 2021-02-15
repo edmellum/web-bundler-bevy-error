@@ -9,8 +9,12 @@ edition = "2018"
 [lib]
 crate-type = ["cdylib"]
 
-[dependencies]
-bevy = "0.4.0"
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+bevy = {version = "0.4.0", default-features = false, features = ["bevy_gltf", "bevy_winit", "render", "png"]}
+bevy_webgl2 = {version="0.4.0"}
+winit = {version = "0.24.0"}
+rand = "0.7"
+getrandom = {version="0.1", features=["wasm-bindgen"]}
 
 [package.metadata.wasm-pack.profile.release]
 wasm-opt = ['-Os']
